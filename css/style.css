@@ -1,0 +1,10 @@
+body{
+    background-color: #c0dae552;
+}
+
+
+.images-size{
+    width: 180px;
+    height: 280px;
+    background-image: url(../img/no_img_found.jpg);
+}
