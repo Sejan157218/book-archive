@@ -2,6 +2,8 @@ const searchInput = document.getElementById('serach-text');
 const serachButton = document.getElementById('serach-button');
 const errorMsg = document.getElementById('error-msg');
 const spiner = document.getElementById('spiner');
+const displayResult = document.getElementById('display-result');
+const reultCount = document.getElementById('reult-count');
 // fetch url fuction
 const urlFetch =async url=>{
     const res = await fetch(url);
@@ -20,6 +22,8 @@ const searchText =() =>{
         errorMsg.appendChild(h2);
         searchInput.value = '';
         spiner.classList.add('d-none');
+        displayResult.textContent = '';
+        reultCount.textContent = '';  
     }
     else{
         showResult(`https://openlibrary.org/search.json?q=${searchValue}`);  
@@ -28,9 +32,7 @@ const searchText =() =>{
 
 // show result
 const showResult = url =>{
-    const displayResult = document.getElementById('display-result');
     displayResult.textContent = '';
-    const reultCount = document.getElementById('reult-count');
     reultCount.textContent = '';    
     urlFetch(url).then((data)=>{
         if(data.numFound===0){
