@@ -22,7 +22,7 @@ const searchText =() =>{
         spiner.classList.add('d-none');
     }
     else{
-        showResult(`http://openlibrary.org/search.json?q=${searchValue}`);  
+        showResult(`https://openlibrary.org/search.json?q=${searchValue}`);  
     }     
 }
 
