@@ -1,5 +1,5 @@
-const searchInput = document.getElementById('serach-text');
-const serachButton = document.getElementById('serach-button');
+const searchInput = document.getElementById('search-text');
+const serachButton = document.getElementById('search-button');
 const errorMsg = document.getElementById('error-msg');
 const spiner = document.getElementById('spiner');
 const displayResult = document.getElementById('display-result');
@@ -33,10 +33,11 @@ const searchText =() =>{
 // show result
 const showResult = url =>{
     displayResult.textContent = '';
-    reultCount.textContent = '';    
+    reultCount.textContent = '';
+    errorMsg.textContent = '';    
     urlFetch(url).then((data)=>{
         if(data.numFound===0){
-            errorMsg.textContent = '';
+            
             spiner.classList.add('d-none');
             const h2 = document.createElement('h2');
             h2.innerText = `'${searchInput.value}' : no search result fund`;
@@ -50,8 +51,6 @@ const showResult = url =>{
         const h3 = document.createElement('h3');
         h3.innerText = `Total result Show : ${data.numFound}`;
         reultCount.appendChild(h3);
-        // const displayResult = document.getElementById('display-result');
-        // displayResult.textContent = '';
         data.docs.slice(0,30).forEach((element)=>{
             const div = document.createElement('div');
             div.classList.add('col');
@@ -63,9 +62,10 @@ const showResult = url =>{
                 </div>      
                 <div class="col-md-8">  
                     <div class="card-body">
-                    <h5 class="card-title">${element.title}</h5>
-                    <p class="card-text">by ${element.author_name}</p>
-                    <p class="card-text"><small class="text-muted">First published in ${element.first_publish_year}</small></p>
+                    <h5 class="card-title">Title: ${element.title}</h5>
+                    <p class="card-text">Author: ${element.author_name ? element.author_name[0]: "N/A"}</p>
+                    <p class="card-text">Publisher: ${element.publisher ? element.publisher[0] : "N/A"}</p>
+                    <p class="card-text">First published : ${element.first_publish_year ? element.first_publish_year : "N/A"}</p>
                     </div>
                 </div>
                 </div>
